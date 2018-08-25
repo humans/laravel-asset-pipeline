@@ -1,15 +1,17 @@
 <?php
 
 return [
+    /**
+     * The path where the plugin will look into.
+     */
     'path' => resource_path('assets'),
 
     /**
-     * This can take in different types of callables.
+     * This takes in different types of callbacks.
      *
-     * [$object, 'method']
-     * function ($request, $asset) { }
-     * SomeClass::class with a `handle($request, $asset)``
+     * NOT IMPLEMENTED
+     * This can also be a class if need be:
+     *     'pipeline' => App\Http\AssetPipeline::class,
      */
-    'pipes' => [
-    ],
+    'pipeline' => [],
 ];
