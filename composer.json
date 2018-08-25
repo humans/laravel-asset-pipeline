@@ -1,6 +1,6 @@
 {
     "name": "artisan/laravel-asset-pipeline",
-    "description": "An asset pipeline for Laravel.",
+    "description": "Asset pipeline library for Laravel.",
     "type": "library",
     "license": "MIT",
     "authors": [
@@ -9,5 +9,10 @@
             "email": "jaggy@artisan.studio"
         }
     ],
-    "require": {}
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Artisan\\AssetPipeline\\": "src/"
+        }
+    }
 }
