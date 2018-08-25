@@ -12,11 +12,28 @@ class AssetsController extends \Illuminate\Routing\Controller
             abort(404);
         }
 
-        return response()->file($asset);
+        return response()->file(
+            $this->transform($asset)
+        );
     }
 
     private function asset($asset)
     {
         return str_finish(config('laravel-asset-pipeline.path'), '/') . $asset;
+    }
+
+    private function transform($asset)
+    {
+        foreach(config('laravel-asset-pipeline.pipes') as $pipe) {
+            $callable = $pipe;
+
+            if (is_string($callable)) {
+                $callable = [new $callable, 'handle'];
+            }
+
+            $asset = call_user_func($callable, $asset);
+        }
+
+        return $asset;
     }
 }
