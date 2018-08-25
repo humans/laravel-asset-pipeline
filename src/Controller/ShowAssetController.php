@@ -58,5 +58,7 @@ class ShowAssetController extends \Illuminate\Routing\Controller
 
             $asset = call_user_func($callable, request(), $asset);
         }
+
+        return $asset;
     }
 }
