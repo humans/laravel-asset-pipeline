@@ -6,15 +6,24 @@ class AssetPipelineServiceProvider extends \Illuminate\Support\ServiceProvider
 {
     public function register()
     {
-        $configPath = __DIR__ . '/../config/laravel-asset-pipeline.php';
-
-        $this->mergeConfigFrom($configPath, 'laravel-asset-pipeline');
-
+        $this->mergeConfig();
 
         $this->registerRoutesMacro();
     }
 
     public function boot()
+    {
+        $this->publishConfig();
+    }
+
+    protected function mergeConfig()
+    {
+        $configPath = __DIR__ . '/../config/laravel-asset-pipeline.php';
+
+        $this->mergeConfigFrom($configPath, 'laravel-asset-pipeline');
+    }
+
+    protected function publishConfig()
     {
         $configPath = __DIR__ . '/../config/laravel-asset-pipeline.php';
 
@@ -29,8 +38,8 @@ class AssetPipelineServiceProvider extends \Illuminate\Support\ServiceProvider
 
         $router->macro('assetPipeline', function () use ($router) {
             $router->get(
-                'assets/{asset?}',
-                '\Artisan\AssetPipeline\Controllers\AssetsController@show'
+                'assets/{asset}',
+                '\Artisan\AssetPipeline\Controllers\ShowAssetController'
             )->where('asset', '.*');
         });
     }
