@@ -24,7 +24,7 @@ We'll get a config file in `config/laravel-asset-pipeline.php`.
 return [
     'path' => resource_path('assets'),
 
-    'pipes' => [
+    'pipeline' => [
     ],
 ];
 ```
@@ -35,7 +35,7 @@ The `pipes` can take in different formats of callables.
 <?php
 
 return [
-    'pipes' => [
+    'pipeline' => [
         // For quick or small manpulations!
         function ($request, $asset) {
             return $asset;

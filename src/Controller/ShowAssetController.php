@@ -49,7 +49,7 @@ class ShowAssetController extends \Illuminate\Routing\Controller
      */
     private function transform($asset)
     {
-        foreach(config('laravel-asset-pipeline.pipes') as $pipe) {
+        foreach(config('laravel-asset-pipeline.pipeline') as $pipe) {
             $callable = $pipe;
 
             if (is_string($callable)) {
