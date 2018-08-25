@@ -1,0 +1,13 @@
+{
+    "name": "artisan/laravel-asset-pipeline",
+    "description": "An asset pipeline for Laravel.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jaggy Gauran",
+            "email": "jaggy@artisan.studio"
+        }
+    ],
+    "require": {}
+}
