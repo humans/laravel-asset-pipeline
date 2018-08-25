@@ -31,7 +31,7 @@ class AssetsController extends \Illuminate\Routing\Controller
                 $callable = [new $callable, 'handle'];
             }
 
-            $asset = call_user_func($callable, $asset);
+            $asset = call_user_func($callable, request(), $asset);
         }
 
         return $asset;
