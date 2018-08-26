@@ -14,5 +14,12 @@
         "psr-4": {
             "Artisan\\AssetPipeline\\": "src/"
         }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Artisan\\AssetPipeline\\ServiceProvider"
+            ]
+        }
     }
 }
