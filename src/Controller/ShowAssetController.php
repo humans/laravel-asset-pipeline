@@ -19,7 +19,9 @@ class ShowAssetController extends \Illuminate\Routing\Controller
             abort(404);
         }
 
-        if (! file_exists($asset = $this->transform($asset))) {
+        $asset = $this->transform($asset);
+
+        if (! file_exists($asset)) {
             abort(404);
         }
 
@@ -53,7 +55,7 @@ class ShowAssetController extends \Illuminate\Routing\Controller
             $callable = $pipe;
 
             if (is_string($callable)) {
-                $callable = [new $callable, 'handle'];
+                $callable = [app($callable), 'handle'];
             }
 
             $asset = call_user_func($callable, request(), $asset);
