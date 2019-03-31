@@ -37,8 +37,10 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
         $router = $this->app->router;
 
         $router->macro('assetPipeline', function () use ($router) {
+            $prefix = config('laravel-asset-pipeline.prefix');
+
             $router->get(
-                'assets/{asset}',
+                "{$prefix}/{asset}",
                 '\Artisan\AssetPipeline\Controllers\ShowAssetController'
             )->where('asset', '.*');
         });
