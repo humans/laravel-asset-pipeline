@@ -1,24 +1,24 @@
 {
-    "name": "artisan/laravel-asset-pipeline",
+    "name": "humans/laravel-asset-pipeline",
     "description": "Asset pipeline library for Laravel.",
     "type": "library",
     "license": "MIT",
     "authors": [
         {
             "name": "Jaggy Gauran",
-            "email": "jaggy@artisan.studio"
+            "email": "jaggy@humans.ph"
         }
     ],
     "require": {},
     "autoload": {
         "psr-4": {
-            "Artisan\\AssetPipeline\\": "src/"
+            "Humans\\AssetPipeline\\": "src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Artisan\\AssetPipeline\\ServiceProvider"
+                "Humans\\AssetPipeline\\ServiceProvider"
             ]
         }
     }

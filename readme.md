@@ -5,7 +5,7 @@ This is a Laravel package that provides a pipeline for assets.
 ## Installation
 
 ```
-composer require artisan/laravel-asset-pipeline
+composer require humans/laravel-asset-pipeline
 ```
 
 ## Configuration

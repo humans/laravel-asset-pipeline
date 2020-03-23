@@ -1,6 +1,6 @@
 <?php
 
-namespace Artisan\AssetPipeline\Controllers;
+namespace Humans\AssetPipeline\Controllers;
 
 class ShowAssetController extends \Illuminate\Routing\Controller
 {

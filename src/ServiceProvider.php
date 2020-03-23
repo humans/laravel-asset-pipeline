@@ -1,6 +1,6 @@
 <?php
 
-namespace Artisan\AssetPipeline;
+namespace Humans\AssetPipeline;
 
 class ServiceProvider extends \Illuminate\Support\ServiceProvider
 {
@@ -41,7 +41,7 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
 
             $router->get(
                 "{$prefix}/{asset}",
-                '\Artisan\AssetPipeline\Controllers\ShowAssetController'
+                '\Humans\AssetPipeline\Controllers\ShowAssetController'
             )->where('asset', '.*');
         });
     }
