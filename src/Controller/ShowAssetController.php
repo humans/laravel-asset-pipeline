@@ -2,6 +2,8 @@
 
 namespace Humans\AssetPipeline\Controllers;
 
+use Illuminate\Support\Str;
+
 class ShowAssetController extends \Illuminate\Routing\Controller
 {
     /**
@@ -36,7 +38,7 @@ class ShowAssetController extends \Illuminate\Routing\Controller
      */
     private function asset($asset)
     {
-        return str_finish(config('laravel-asset-pipeline.path'), '/') . $asset;
+        return Str::finish(config('laravel-asset-pipeline.path'), '/') . $asset;
     }
 
     /**
