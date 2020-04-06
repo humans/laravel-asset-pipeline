@@ -1,6 +1,8 @@
 <?php
 
 return [
+    'disk' => 'public',
+
     /**
      * Some prefix.
      */

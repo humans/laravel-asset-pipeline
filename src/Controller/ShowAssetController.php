@@ -2,7 +2,11 @@
 
 namespace Humans\AssetPipeline\Controllers;
 
-use Illuminate\Support\Str;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Storage;
 
 class ShowAssetController extends \Illuminate\Routing\Controller
 {
@@ -15,30 +19,19 @@ class ShowAssetController extends \Illuminate\Routing\Controller
      */
     public function __invoke($asset)
     {
-        $asset = $this->asset($asset);
+        $filesystem = Storage::disk(Config::get('laravel-asset-pipeline.disk'));
 
-        if (! file_exists($asset)) {
+        if (! $filesystem->exists($asset)) {
             abort(404);
         }
 
         $asset = $this->transform($asset);
 
-        if (! file_exists($asset)) {
-            abort(404);
-        }
-
-        return response()->file($asset);
-    }
-
-    /**
-     * Get the asset's path based from the config set.
-     *
-     * @param  string  $asset
-     * @return string
-     */
-    private function asset($asset)
-    {
-        return Str::finish(config('laravel-asset-pipeline.path'), '/') . $asset;
+        return Response::make(Cache::rememberForever($asset, function () use ($filesystem, $asset) {
+            return $filesystem->get($asset);
+        }), $status = 200, [
+            'Content-Type' => 'image/' . pathinfo($asset, PATHINFO_EXTENSION),
+        ]);
     }
 
     /**
@@ -53,11 +46,11 @@ class ShowAssetController extends \Illuminate\Routing\Controller
      */
     private function transform($asset)
     {
-        foreach(config('laravel-asset-pipeline.pipeline') as $pipe) {
+        foreach(Config::get('laravel-asset-pipeline.pipeline') as $pipe) {
             $callable = $pipe;
 
             if (is_string($callable)) {
-                $callable = [app($callable), 'handle'];
+                $callable = [App::make($callable), 'handle'];
             }
 
             $asset = call_user_func($callable, request(), $asset);
